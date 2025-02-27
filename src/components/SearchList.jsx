@@ -22,7 +22,7 @@ const SearchList = ({ tracks = [], playlist, setPlaylist }) => {
             {Array.isArray(tracks) && tracks.length > 0 ? (
                 tracks.map((track) => (
                     <div className="w-full" key={track.id}>
-                        <div className>                        
+                        <div>                        
                             <img className='max-w-12 rounded-md' src={track.album.images[0].url} alt={track.name} />
                         </div>
                     <div className='flex w-full'>
