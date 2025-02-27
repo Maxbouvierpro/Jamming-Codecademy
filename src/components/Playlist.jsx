@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Playlist = ({ playlist, setPlaylist }) => {   
     
+    const [loading, setLoading] = useState(false);
+
+    const handleSave = (event) => {
+        event.preventDefault();
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+            alert('Playlist sauvegardée')
+        }, 2000);
+        
+    }
     const handleRemove = (track) => {
         setPlaylist(playlist.filter((t) => t.id !== track.id));
     }
+
+    const playlistVide = <p>Votre playlist est vide.</p>;
+    const boutonSave = <button onClick={handleSave}>Sauvegarder la playlist</button>
     
     return (
         <div className='flex-1 flex flex-col items-start gap-6'>
@@ -31,6 +45,11 @@ const Playlist = ({ playlist, setPlaylist }) => {
 
                 </div>
                     ))}
+                    {loading ? <p>Enregistrement...</p> : (
+                        <div>
+                            {playlist.length === 0 ? playlistVide : boutonSave}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
